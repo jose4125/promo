@@ -24,7 +24,7 @@ if( isset($_POST['cedula']) ){
 					$_SESSION['frase'] = $fila['frase'];
 
 					if($_SESSION['frase'] == ''){
-						header('location: frase-secreta.php');
+						header('location: frase-secreta-alkosto.php');
 					}
 				}else{
 					$error1 = 'cedula incorrecta';
