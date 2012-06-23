@@ -6,16 +6,18 @@ header('location: cedula.php');
 }
 if($_POST['frase'] != '' && $_POST['fan'] != ''){
 
-	echo $_POST['fan'];
-	echo $_POST['frase'];
+	//echo $_POST['fan'];
+	//echo $_POST['frase'];
 
 	$link = conectar();
 	if ( $link ){
-		abrirbd($link);
-		$sql = "UPDATE datos SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE consecutivo='" . $_SESSION['consecutivo_id'] . "'";
-		consulta($sql, $link);
-
-		cerrar_conexion($link);
+		if (abrirbd($link)){
+			$sql = "UPDATE datos SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE consecutivo='" . $_SESSION['consecutivo_id'] . "' AND frase=''";
+			if($result=consulta($sql, $link)){
+				cerrar_conexion($link);
+				header('location: gracias.php');
+			}
+		}
 
 	}else{
 
@@ -23,11 +25,7 @@ if($_POST['frase'] != '' && $_POST['fan'] != ''){
 	}
 
 
-}else{
-	echo 'noooo!';
 }
-
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

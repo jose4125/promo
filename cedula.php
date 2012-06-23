@@ -9,7 +9,7 @@ if( isset($_POST['cedula']) ){
 		
 		if( abrirbd($link) ){
 			
-			$sql = "SELECT consecutivo, cedula, nombres FROM DATOS WHERE cedula='" . $_POST["cedula"] . "'";
+			$sql = "SELECT consecutivo, cedula, nombres, fan, frase FROM DATOS WHERE cedula='" . $_POST["cedula"] . "'";
 			//echo $sql;
 			if( $result=consulta($sql, $link) ){
 
@@ -20,8 +20,12 @@ if( isset($_POST['cedula']) ){
 					$_SESSION['consecutivo_id'] = $fila['consecutivo'];
 					$_SESSION['cedula'] = $fila['cedula'];
 					$_SESSION['nombres'] = $fila['nombres'];
+					$_SESSION['fan'] = $fila['fan'];
+					$_SESSION['frase'] = $fila['frase'];
 
-					header('location: frase-secreta.php');
+					if($_SESSION['frase'] == ''){
+						header('location: frase-secreta.php');
+					}
 				}else{
 					$error1 = 'cedula incorrecta';
 				}
@@ -35,7 +39,7 @@ if( isset($_POST['cedula']) ){
 
 			$error1 = 'error abrindop B.D';
 		}
-		cerrar_conexion($link);
+		//cerrar_conexion($link);
 	}else{
 
 		$error1 = 'error en conexion a servidor B.D';
