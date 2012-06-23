@@ -1,0 +1,12 @@
+CREATE DATABASE usuariosalkosto; 
+
+
+CREATE TABLE DATOS(consecutivo integer AUTO_INCREMENT,
+cedula integer,
+nombres varchar(200),
+ciudad varchar(100),
+email varchar(100),
+telefono varchar(50),
+aceptaT char(1),
+ofertas char(1),
+primary key(consecutivo,cedula));
