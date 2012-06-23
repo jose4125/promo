@@ -1,6 +1,33 @@
 <?php
+include('configuracion.php');
 session_start();
-echo $_SESSION['consecutivo_id'];
+if( !isset($_SESSION['consecutivo_id'])){
+header('location: cedula.php');
+}
+if($_POST['frase'] != '' && $_POST['fan'] != ''){
+
+	echo $_POST['fan'];
+	echo $_POST['frase'];
+
+	$link = conectar();
+	if ( $link ){
+		abrirbd($link);
+		$sql = "UPDATE datos SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE consecutivo='" . $_SESSION['consecutivo_id'] . "'";
+		consulta($sql, $link);
+
+		cerrar_conexion($link);
+
+	}else{
+
+		echo 'error en conexion a servidor B.D';
+	}
+
+
+}else{
+	echo 'noooo!';
+}
+
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -149,13 +176,16 @@ body {
   <div class="clear"></div>
   <div id="dos">
     <div id="frase">
+    <form action="frase-secreta.php" method="POST">
       <table width="600" border="0">
         <tr>
           <td class="datoscedula">Frase Secreta</td>
-          <td><input name="frase" type="text" class="roundedcorner3" value="" size="60" /></td>
-          <td align="left"><img src="imagenes/enviar-frase.png" width="109" height="35" /></td>
+          <td><input name="frase" type="text" class="roundedcorner3" size="60" /></td>
+          <td><input name="fan" type="hidden" class="roundedcorner3" value="katronix" size="60" /></td>
+          <td align="left"><input type="submit" value="ENVIAR FRASE"><img src="imagenes/enviar-frase.png" width="109" height="35" /></td>
         </tr>
       </table>
+     </form>
     </div>
   </div>
   <div class="clear">
