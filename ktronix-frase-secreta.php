@@ -12,7 +12,10 @@ if($_POST['frase'] != '' && $_POST['fan'] != ''){
 	$link = conectar();
 	if ( $link ){
 		if (abrirbd($link)){
-			$sql = "UPDATE datos SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE consecutivo='" . $_SESSION['consecutivo_id'] . "' AND frase=''";
+			//$sql = "UPDATE DATOS SET fan='alkosto', frase='hola' WHERE frase='' AND consecutivo=1";
+			$sql = "UPDATE DATOS SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE frase='' AND consecutivo=" . $_SESSION['consecutivo_id'];
+			//echo $sql;
+
 			if($result=consulta($sql, $link)){
 				cerrar_conexion($link);
 				header('location: gracias.php');

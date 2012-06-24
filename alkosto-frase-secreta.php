@@ -13,8 +13,8 @@ if($_POST['frase'] != '' && $_POST['fan'] != ''){
 	if ( $link ){
 		if (abrirbd($link)){
 
-			$sql = "UPDATE DATOS SET fan='alkosto', frase='hola' WHERE frase='' AND consecutivo=1";
-			//$sql = "UPDATE datos SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE consecutivo='" . $_SESSION['consecutivo_id'] . "'";
+			//$sql = "UPDATE DATOS SET fan='alkosto', frase='hola' WHERE frase='' AND consecutivo=1";
+			$sql = "UPDATE DATOS SET fan='" . $_POST['fan'] . "', frase='" . $_POST['frase'] . "' WHERE frase='' AND consecutivo=" . $_SESSION['consecutivo_id'];
 			//echo $sql;
 			if($result=consulta($sql, $link)){
 				//echo 'hola';

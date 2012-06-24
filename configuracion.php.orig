@@ -1,5 +1,13 @@
 <?php
+<<<<<<< HEAD
+if( isset($_GET['con_errores'])){
+error_reporting(E_ALL);
+ini_set('display_errors','On');
+}
+define('IPSERVIDORBD', 'localhost');
+=======
 define('IPSERVIDORBD', '199.188.205.16');
+>>>>>>> 58d82b8f22e8be97317fc2a3042e466f23f482ee
 define('PUERTO', '3306');
 define('USUARIOBD', 'ruursw_promo');
 define('CLAVEBD', 'qwerty123');
